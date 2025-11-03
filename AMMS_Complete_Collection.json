@@ -1,0 +1,4621 @@
+{
+  "info": {
+    "name": "AMMS Complete API Collection",
+    "description": "Complete AMMS Backend API Collection organized by user types (Admin, Supplier, BD) with screens ordered by system flow. Supports EN/AR via Lang header.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "🔐 Admin",
+      "description": "Complete Admin panel endpoints organized by screen flow",
+      "item": [
+        {
+          "name": "1. Authentication",
+          "description": "Admin login, logout, and session management",
+          "item": [
+            {
+              "name": "Admin Login",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/auth/login",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "auth",
+                    "login"
+                  ]
+                },
+                "description": "Login as admin user. Returns authentication token.\n\n**Token Expiration:**\n- remember_me = false: Token expires in 1 hour (default)\n- remember_me = true: Token expires in 30 days",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"admin@amms.com\",\n  \"password\": \"admin123\",\n  \"remember_me\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Admin Get Me",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/auth/me",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "auth",
+                    "me"
+                  ]
+                },
+                "description": "Get authenticated admin user details with roles and permissions"
+              }
+            },
+            {
+              "name": "Admin Logout",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/auth/logout",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "auth",
+                    "logout"
+                  ]
+                },
+                "description": "Logout admin user and revoke current access token"
+              }
+            }
+          ]
+        },
+        {
+          "name": "2. Dashboard & Profile",
+          "description": "Admin dashboard and profile management",
+          "item": [
+            {
+              "name": "Get Dashboard",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/dashboard",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "dashboard"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Profile",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/profile",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "profile"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Update Profile",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/profile",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "profile"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Admin Name\",\n  \"email\": \"admin@example.com\",\n  \"mobile\": \"+201234567890\",\n  \"nationality\": \"EG\",\n  \"job_title\": \"Head of IT\",\n  \"department\": \"IT\",\n  \"company_unit\": \"HQ\",\n  \"employee_id\": \"EMP-0001\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update Password",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/update-password",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "update-password"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"current_password\": \"oldpassword\",\n  \"password\": \"newpassword\",\n  \"password_confirmation\": \"newpassword\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "3. Admin Management",
+          "description": "Manage admin users (CRUD operations)",
+          "item": [
+            {
+              "name": "Get All Admins",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/admins?page=1&per_page=15",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "admins?page=1&per_page=15"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "15"
+                    },
+                    {
+                      "key": "search",
+                      "value": "",
+                      "disabled": true
+                    },
+                    {
+                      "key": "status",
+                      "value": "active",
+                      "disabled": true
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Admin Statistics",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/admins/statistics",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "admins",
+                    "statistics"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Admin",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/admins/{{admin_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "admins",
+                    "{{admin_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Create Admin",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/admins",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "admins"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Admin\",\n  \"email\": \"newadmin@example.com\",\n  \"password\": \"Password1!\",\n  \"password_confirmation\": \"Password1!\",\n  \"status\": \"active\",\n  \"role_id\": 1,\n  \"mobile\": \"+201234567891\",\n  \"nationality\": \"EG\",\n  \"job_title\": \"Support Lead\",\n  \"department\": \"Support\",\n  \"company_unit\": \"HQ\",\n  \"employee_id\": \"EMP-2002\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update Admin",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/admins/{{admin_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "admins",
+                    "{{admin_id}}"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Admin Name\",\n  \"email\": \"updated@example.com\",\n  \"mobile\": \"+201234567892\",\n  \"nationality\": \"EG\",\n  \"job_title\": \"Ops Lead\",\n  \"department\": \"Operations\",\n  \"company_unit\": \"Branch\",\n  \"employee_id\": \"EMP-3003\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete Admin",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/admins/{{admin_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "admins",
+                    "{{admin_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Update Admin Status",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/admins/{{admin_id}}/status",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "admins",
+                    "{{admin_id}}",
+                    "status"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"inactive\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update Admin Role",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/admins/{{admin_id}}/role",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "admins",
+                    "{{admin_id}}",
+                    "role"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role_id\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Generate Strong Password",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/admins/generate-password",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "admins",
+                    "generate-password"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Change Admin Password",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/admins/{{admin_id}}/change-password",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "admins",
+                    "{{admin_id}}",
+                    "change-password"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"current_password\": \"oldpassword\",\n  \"password\": \"newpassword\",\n  \"password_confirmation\": \"newpassword\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Reset Admin Password",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/admins/{{admin_id}}/reset-password",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "admins",
+                    "{{admin_id}}",
+                    "reset-password"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"new_password\": \"NewPass123!\",\n  \"new_password_confirmation\": \"NewPass123!\",\n  \"force_password_change\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "4. Supplier Management",
+          "description": "Manage suppliers and supplier accounts",
+          "item": [
+            {
+              "name": "Get All Suppliers",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/suppliers?page=1&per_page=15",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "suppliers?page=1&per_page=15"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Supplier Statistics",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/suppliers/statistics",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "suppliers",
+                    "statistics"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Supplier",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/suppliers/{{supplier_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "suppliers",
+                    "{{supplier_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Create Supplier with Admin",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/suppliers/create-with-admin",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "suppliers",
+                    "create-with-admin"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Supplier Company\",\n  \"email\": \"supplier@example.com\",\n  \"password\": \"Password1!\",\n  \"password_confirmation\": \"Password1!\",\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update Supplier",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/suppliers/{{supplier_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "suppliers",
+                    "{{supplier_id}}"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Supplier Name\",\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete Supplier",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/suppliers/{{supplier_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "suppliers",
+                    "{{supplier_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Bulk Update Supplier Status",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/suppliers/bulk-status",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "suppliers",
+                    "bulk-status"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier_ids\": [\n    1,\n    2,\n    3\n  ],\n  \"status\": \"inactive\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "5. BD Management",
+          "description": "Manage BD (Business Development) users",
+          "item": [
+            {
+              "name": "Get All BDs",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/bds?page=1&per_page=15",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "bds?page=1&per_page=15"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single BD",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/bds/{{bd_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "bds",
+                    "{{bd_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Create BD",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/bds",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "bds"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New BD User\",\n  \"email\": \"bd@example.com\",\n  \"password\": \"Password1!\",\n  \"password_confirmation\": \"Password1!\",\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update BD",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/bds/{{bd_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "bds",
+                    "{{bd_id}}"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated BD Name\",\n  \"email\": \"bd_updated@example.com\",\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete BD",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/bds/{{bd_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "bds",
+                    "{{bd_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Update BD Status",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/bds/{{bd_id}}/status",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "bds",
+                    "{{bd_id}}",
+                    "status"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"inactive\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "6. Project Management",
+          "description": "Manage projects and assignments",
+          "item": [
+            {
+              "name": "Get All Projects",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects?per_page=15",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "15"
+                    },
+                    {
+                      "key": "search",
+                      "value": "",
+                      "disabled": true
+                    },
+                    {
+                      "key": "is_archived",
+                      "value": "",
+                      "disabled": true
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Project Statistics",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/statistics",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "statistics"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Creation Requirements",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/creation-requirements",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "creation-requirements"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Project",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/{{project_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "{{project_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Project with Assignments",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/{{project_id}}/with-assignments",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "{{project_id}}",
+                    "with-assignments"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Available Supplier Accounts",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/available-supplier-accounts",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "projects",
+                    "available-supplier-accounts"
+                  ]
+                },
+                "description": "Get all supplier accounts with supplier_admin role for project creation"
+              }
+            },
+            {
+              "name": "Create Project",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "New Project",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Project description",
+                      "type": "text"
+                    },
+                    {
+                      "key": "photo",
+                      "type": "file",
+                      "src": [],
+                      "description": "Optional: Project photo (jpeg, jpg, png, webp, max 5MB)"
+                    },
+                    {
+                      "key": "supplier_id",
+                      "value": "1",
+                      "type": "text",
+                      "description": "Optional: Assign supplier to project"
+                    }
+                  ]
+                },
+                "description": "Create a new project. Admin can optionally assign a supplier at creation time."
+              }
+            },
+            {
+              "name": "Update Project",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/{{project_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "{{project_id}}"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Updated Project Name",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Updated description",
+                      "type": "text"
+                    },
+                    {
+                      "key": "photo",
+                      "type": "file",
+                      "src": [],
+                      "description": "Optional: New project photo (jpeg, jpg, png, webp, max 5MB). Old photo will be replaced."
+                    },
+                    {
+                      "key": "supplier_id",
+                      "value": "1",
+                      "type": "text",
+                      "description": "Optional: Change assigned supplier"
+                    },
+                    {
+                      "key": "is_archived",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "description": "Update project details. Uses POST method with form-data to support photo uploads."
+              }
+            },
+            {
+              "name": "Delete Project",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/{{project_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "{{project_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Archive Project",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/{{project_id}}/archive",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "{{project_id}}",
+                    "archive"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Unarchive Project",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/{{project_id}}/unarchive",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "{{project_id}}",
+                    "unarchive"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Assign Supplier to Project",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/{{project_id}}/assign-supplier",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "{{project_id}}",
+                    "assign-supplier"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier_id\": 1,\n  \"expires_at\": \"2025-12-31T23:59:59\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "description": "Assign a supplier to the project. The supplier_id must exist. expires_at is optional."
+              }
+            },
+            {
+              "name": "Get Project Assignments",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/{{project_id}}/assignments",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "{{project_id}}",
+                    "assignments"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Supplier Assignments",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/{{project_id}}/supplier-assignments",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "{{project_id}}",
+                    "supplier-assignments"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Remove Assignment",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/projects/{{project_id}}/assignments/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "admin",
+                    "projects",
+                    "{{project_id}}",
+                    "assignments",
+                    "1"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "7. Roles & Permissions",
+          "description": "Manage system roles and permissions",
+          "item": [
+            {
+              "name": "Get All Roles",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/roles",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "roles"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Role",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/roles/{{role_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "roles",
+                    "{{role_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Create Role",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/roles",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "roles"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"new_role\",\n  \"display_name\": \"New Role\",\n  \"description\": \"Role description\",\n  \"role_type\": \"admin\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update Role",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/roles/{{role_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "roles",
+                    "{{role_id}}"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"updated_role\",\n  \"display_name\": \"Updated Role\",\n  \"description\": \"Updated description\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete Role",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/roles/{{role_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "roles",
+                    "{{role_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Role Permissions",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/roles/{{role_id}}/permissions",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "roles",
+                    "{{role_id}}",
+                    "permissions"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Attach Permissions to Role",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/roles/{{role_id}}/permissions",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "roles",
+                    "{{role_id}}",
+                    "permissions"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permission_ids\": [\n    1,\n    2,\n    3\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Sync Role Permissions",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/roles/{{role_id}}/permissions",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "roles",
+                    "{{role_id}}",
+                    "permissions"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permission_ids\": [\n    1,\n    2,\n    3,\n    4\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Detach Permission from Role",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/roles/{{role_id}}/permissions/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "roles",
+                    "{{role_id}}",
+                    "permissions",
+                    "1"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Role Users",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/roles/{{role_id}}/users",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "roles",
+                    "{{role_id}}",
+                    "users"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get All Permissions",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/permissions",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "permissions"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Permission",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/permissions/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "permissions",
+                    "1"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "8. Activity Log",
+          "description": "View system activity and audit logs",
+          "item": [
+            {
+              "name": "Get All Activities",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/activity?page=1&per_page=15",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "activity?page=1&per_page=15"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Activity Statistics",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/activity/statistics",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "activity",
+                    "statistics"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Recent Activity",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/activity/recent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "activity",
+                    "recent"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Activity by Entity",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/activity/by-entity",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "activity",
+                    "by-entity"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Activity by User",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/activity/by-user",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "activity",
+                    "by-user"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Activity",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/admin/activity/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "activity",
+                    "1"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "📦 Supplier",
+      "description": "Complete Supplier panel endpoints organized by screen flow",
+      "item": [
+        {
+          "name": "1. Authentication",
+          "description": "Supplier login, logout, and session management",
+          "item": [
+            {
+              "name": "Supplier Login",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/auth/login",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "auth",
+                    "login"
+                  ]
+                },
+                "description": "Login as supplier user. Returns authentication token.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"supplier@example.com\",\n  \"password\": \"password\",\n  \"remember_me\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Supplier Get Me",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/auth/me",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "auth",
+                    "me"
+                  ]
+                },
+                "description": "Get authenticated supplier user details"
+              }
+            },
+            {
+              "name": "Supplier Logout",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/auth/logout",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "auth",
+                    "logout"
+                  ]
+                },
+                "description": "Logout supplier user"
+              }
+            }
+          ]
+        },
+        {
+          "name": "2. Profile & Dashboard",
+          "description": "Supplier profile and statistics",
+          "item": [
+            {
+              "name": "Get Profile",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/profile",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "profile"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Update Profile",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/profile",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "profile"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Supplier Name\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Get Statistics",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/statistics",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "statistics"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "3. Account Management",
+          "description": "Manage supplier accounts (sub-users)",
+          "item": [
+            {
+              "name": "Get All Accounts",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Account",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts",
+                    "1"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Create Account",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"New Account\",\n  \"email\": \"account@example.com\",\n  \"password\": \"Password1!\",\n  \"password_confirmation\": \"Password1!\",\n  \"status\": \"active\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update Account",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts",
+                    "1"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Updated Account Name\",\n  \"email\": \"updated@example.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete Account",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts",
+                    "1"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Update Account Status",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts/1/status",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts",
+                    "1",
+                    "status"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"status\": \"inactive\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update Account Role",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts/1/role",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts",
+                    "1",
+                    "role"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role_id\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Change Account Password",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts/1/change-password",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts",
+                    "1",
+                    "change-password"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"current_password\": \"oldpassword\",\n  \"password\": \"newpassword\",\n  \"password_confirmation\": \"newpassword\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Reset Account Password",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts/1/reset-password",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts",
+                    "1",
+                    "reset-password"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"new_password\": \"NewPass123!\",\n  \"new_password_confirmation\": \"NewPass123!\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Get Account Roles",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts/1/roles",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts",
+                    "1",
+                    "roles"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Assign Roles to Account",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts/1/roles",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts",
+                    "1",
+                    "roles"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role_ids\": [\n    1,\n    2\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Sync Account Roles",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts/1/roles",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts",
+                    "1",
+                    "roles"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"role_ids\": [\n    1,\n    2,\n    3\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Remove Role from Account",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/accounts/1/roles/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "accounts",
+                    "1",
+                    "roles",
+                    "1"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "4. Project Management",
+          "description": "Manage supplier projects and assignments",
+          "item": [
+            {
+              "name": "Get All Projects",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects?per_page=15",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects"
+                  ],
+                  "query": [
+                    {
+                      "key": "per_page",
+                      "value": "15"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Project Statistics",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/statistics",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "statistics"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Creation Requirements",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/creation-requirements",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "creation-requirements"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Project",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/{{project_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "{{project_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Project with Assignments",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/{{project_id}}/with-assignments",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "{{project_id}}",
+                    "with-assignments"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Available Supplier Accounts",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/available-supplier-accounts",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "available-supplier-accounts"
+                  ]
+                },
+                "description": "Get all supplier accounts from the same supplier for project creation"
+              }
+            },
+            {
+              "name": "Create Project",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "New Supplier Project",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Project description",
+                      "type": "text"
+                    },
+                    {
+                      "key": "photo",
+                      "type": "file",
+                      "src": [],
+                      "description": "Optional: Project photo (jpeg, jpg, png, webp, max 5MB)"
+                    }
+                  ]
+                },
+                "description": "Create a new project. The supplier creating the project will be automatically assigned as the project owner."
+              }
+            },
+            {
+              "name": "Update Project",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/{{project_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "{{project_id}}"
+                  ]
+                },
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "name",
+                      "value": "Updated Project",
+                      "type": "text"
+                    },
+                    {
+                      "key": "description",
+                      "value": "Updated description",
+                      "type": "text"
+                    },
+                    {
+                      "key": "photo",
+                      "type": "file",
+                      "src": [],
+                      "description": "Optional: New project photo (jpeg, jpg, png, webp, max 5MB). Old photo will be replaced."
+                    },
+                    {
+                      "key": "is_archived",
+                      "value": "false",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "description": "Update project details. Uses POST method with form-data to support photo uploads."
+              }
+            },
+            {
+              "name": "Delete Project",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/{{project_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "{{project_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Archive Project",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/{{project_id}}/archive",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "{{project_id}}",
+                    "archive"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Unarchive Project",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/{{project_id}}/unarchive",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "{{project_id}}",
+                    "unarchive"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Assign User to Project",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/{{project_id}}/assign-user",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "{{project_id}}",
+                    "assign-user"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"supplier_user_id\": 1,\n  \"expires_at\": \"2025-12-31T23:59:59\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "description": "Assign a supplier user (account) to the project. The user must belong to the same supplier."
+              }
+            },
+            {
+              "name": "Get Project Assignments",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/{{project_id}}/assignments",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "{{project_id}}",
+                    "assignments"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Remove Assignment",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/projects/{{project_id}}/assignments/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "supplier",
+                    "projects",
+                    "{{project_id}}",
+                    "assignments",
+                    "1"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "5. Roles & Permissions",
+          "description": "Manage supplier-specific roles and permissions",
+          "item": [
+            {
+              "name": "Get All Roles",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/roles",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "roles"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Role",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/roles/{{role_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "roles",
+                    "{{role_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Create Role",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/roles",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "roles"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"new_supplier_role\",\n  \"display_name\": \"New Supplier Role\",\n  \"description\": \"Role description\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Update Role",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/roles/{{role_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "roles",
+                    "{{role_id}}"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"updated_role\",\n  \"display_name\": \"Updated Role\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Delete Role",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/roles/{{role_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "roles",
+                    "{{role_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Role Permissions",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/roles/{{role_id}}/permissions",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "roles",
+                    "{{role_id}}",
+                    "permissions"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Attach Permissions",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/roles/{{role_id}}/permissions",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "roles",
+                    "{{role_id}}",
+                    "permissions"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permission_ids\": [\n    1,\n    2\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Sync Permissions",
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/roles/{{role_id}}/permissions",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "roles",
+                    "{{role_id}}",
+                    "permissions"
+                  ]
+                },
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"permission_ids\": [\n    1,\n    2,\n    3\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "Detach Permission",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/roles/{{role_id}}/permissions/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "roles",
+                    "{{role_id}}",
+                    "permissions",
+                    "1"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Role Users",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/roles/{{role_id}}/users",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "roles",
+                    "{{role_id}}",
+                    "users"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Available Permissions",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/permissions",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "permissions"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "6. Activity Log",
+          "description": "View supplier activity logs",
+          "item": [
+            {
+              "name": "Get All Activities",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/activity",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "activity"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Activity Statistics",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/activity/statistics",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "activity",
+                    "statistics"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Recent Activity",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/activity/recent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "activity",
+                    "recent"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Activity",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{supplier_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/supplier/activity/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "supplier",
+                    "activity",
+                    "1"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "💼 BD (Business Development)",
+      "description": "Complete BD panel endpoints organized by screen flow",
+      "item": [
+        {
+          "name": "1. Authentication",
+          "description": "BD login, logout, and session management",
+          "item": [
+            {
+              "name": "BD Login",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/bd/auth/login",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "bd",
+                    "auth",
+                    "login"
+                  ]
+                },
+                "description": "Login as BD user. Returns authentication token.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"bd@example.com\",\n  \"password\": \"password\",\n  \"remember_me\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "name": "BD Get Me",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bd_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/bd/auth/me",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "bd",
+                    "auth",
+                    "me"
+                  ]
+                },
+                "description": "Get authenticated BD user details"
+              }
+            },
+            {
+              "name": "BD Logout",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bd_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/bd/auth/logout",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "bd",
+                    "auth",
+                    "logout"
+                  ]
+                },
+                "description": "Logout BD user"
+              }
+            }
+          ]
+        },
+        {
+          "name": "2. Projects (Read-Only)",
+          "description": "View assigned projects - BD users have read-only access",
+          "item": [
+            {
+              "name": "Get All Projects",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bd_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/bd/projects?per_page=15",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "bd",
+                    "projects?per_page=15"
+                  ]
+                },
+                "description": "BD can only view projects they are assigned to"
+              }
+            },
+            {
+              "name": "Get Project Statistics",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bd_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/bd/projects/statistics",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "bd",
+                    "projects",
+                    "statistics"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Project",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bd_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/bd/projects/{{project_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "bd",
+                    "projects",
+                    "{{project_id}}"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Project with Assignments",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bd_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/bd/projects/{{project_id}}/with-assignments",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "bd",
+                    "projects",
+                    "{{project_id}}",
+                    "with-assignments"
+                  ]
+                },
+                "description": "BD cannot see BD assignments - only project info"
+              }
+            }
+          ]
+        },
+        {
+          "name": "3. Activity Log",
+          "description": "View BD activity logs",
+          "item": [
+            {
+              "name": "Get All Activities",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bd_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/bd/activity",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "bd",
+                    "activity"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Activity Statistics",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bd_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/bd/activity/statistics",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "bd",
+                    "activity",
+                    "statistics"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Recent Activity",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bd_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/bd/activity/recent",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "bd",
+                    "activity",
+                    "recent"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Get Single Activity",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{bd_token}}"
+                  },
+                  {
+                    "key": "Lang",
+                    "value": "en",
+                    "description": "Language (en/ar)"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/bd/activity/1",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "bd",
+                    "activity",
+                    "1"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost",
+      "type": "string"
+    },
+    {
+      "key": "admin_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "supplier_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "bd_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "admin_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "supplier_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "bd_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "project_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "role_id",
+      "value": "1",
+      "type": "string"
+    }
+  ]
+}
